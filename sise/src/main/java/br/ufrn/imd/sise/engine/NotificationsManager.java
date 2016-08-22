@@ -10,17 +10,23 @@ import br.ufrn.imd.sise.model.Information;
 
 public class NotificationsManager {
 	
-	public NotificationsManager(){
-		
-		SearchEngine se = new EventSearchEngine();
+	public static void main(String args[]){
+		NotificationsManager maneger = new NotificationsManager();
+
 		SearchEngine sn = new NewsSearchEngine();
-		SearchEngine si = new InternshipSearchEngine();
+
+		List<Information> news = sn.buscar();
 		
-		List<Information> lse = se.buscar();
-		List<Information> lsn = sn.buscar();
-		List<Information> lsi = si.buscar();
-		
-		
+		maneger.printDemonstration(news);
+	}
+	
+	void printDemonstration(List<Information> informations){
+    	for (Information information : informations) {
+    		System.out.println(information.getTitle());
+			System.out.println(information.getContent());
+			System.out.println(information.getDate());
+			System.out.println("--------------------------------");
+		}
 	}
 
 }
