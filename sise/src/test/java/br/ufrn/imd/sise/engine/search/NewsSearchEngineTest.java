@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class NewSearchEngineTest {
+public class NewsSearchEngineTest {
 	//TODO Teste de tempo de busca
 	/* Plano de teste: 
 	 * 
