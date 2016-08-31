@@ -18,8 +18,6 @@ import br.ufrn.imd.sise.user.model.User;
 public class PrefferencesSearch {
 	
 	private static final String ACESS_PERFIL_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/perfilusuario/";
-	
-	//private static final String ACESS_TOKEN = "6d2bd6a4-8196-4f20-8b5d-8916d3d2770a";
 	private static final String ACESS_VINCULO_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/listavinculos/usuario";
 	private static final String ACESS_DISCIPLINAS_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/matriculacomponente/discente/";//{idDiscente}/all;
 	private static final String ACESS_DISCIPLINA_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/turma/usuario/";
@@ -33,14 +31,12 @@ public class PrefferencesSearch {
 		
 		RequestAuthorization auth = new RequestAuthorization();
 		String stringResponse = auth.getResponse(request);
-		
+		//System.out.println(stringResponse);
 		return stringResponse;
 	}
 	
 	private String colsultProfileName(int idUser){
 		long inicio = System.currentTimeMillis();
-		
-		
 		
 		String stringResponse = getResponseString(ACESS_PERFIL_USER+idUser);
 

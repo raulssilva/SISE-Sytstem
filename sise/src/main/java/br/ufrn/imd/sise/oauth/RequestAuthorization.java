@@ -9,14 +9,20 @@ public class RequestAuthorization {
 	private static final String ACESS_TOKEN = "6d2bd6a4-8196-4f20-8b5d-8916d3d2770a";
 	
 	public String getResponse(String request){
-		Client client = ClientBuilder.newClient();
-		
-		Response response = client.target(request)
-				  .request().header("Authorization", "Bearer "+ ACESS_TOKEN).method("GET");
-		
-		String stringResponse = response.readEntity(String.class);
-		
-		return stringResponse;
+		try{
+			Client client = ClientBuilder.newClient();
+			
+			Response response = client.target(request)
+					  .request().header("Authorization", "Bearer "+ ACESS_TOKEN).method("GET");
+			
+			String stringResponse = response.readEntity(String.class);
+			
+			return stringResponse;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return null;
 	}
 	
 //	private static final String CLIENT_TARGET = "https://apitestes.info.ufrn.br/authz-server/oauth/token";
