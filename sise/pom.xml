@@ -30,7 +30,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>br.ufrn.imd.optmalg.Main</mainClass>
+              <mainClass>br.ufrn.imd.sise.engine.NotificationsManager</mainClass>
             </manifest>
           </archive>
       </configuration>
@@ -49,7 +49,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>br.ufrn.imd.optmalg.Main</mainClass>
+              <mainClass>br.ufrn.imd.sise.engine.NotificationsManager</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -76,7 +76,7 @@
       <artifactId>JUnitParams</artifactId>
       <version>1.0.5</version>
     </dependency>
-    <dependency>
+<!--     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
       <version>4.1</version>
@@ -85,7 +85,7 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.4</version>
-    </dependency>
+    </dependency> -->
     
     <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
     <!-- Mapeia Objetos WEB -->
