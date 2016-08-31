@@ -9,8 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import br.ufrn.imd.sise.model.Information;
-import br.ufrn.imd.sise.model.News;
+import br.ufrn.imd.sise.engine.model.Information;
+import br.ufrn.imd.sise.engine.model.News;
 
 public class NewsSearchEngine implements SearchEngine{
 

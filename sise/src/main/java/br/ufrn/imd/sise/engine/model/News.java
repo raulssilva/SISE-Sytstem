@@ -1,4 +1,4 @@
-package br.ufrn.imd.sise.model;
+package br.ufrn.imd.sise.engine.model;
 
 public class News extends Information{
 	

@@ -1,4 +1,4 @@
-package br.ufrn.imd.sise.model;
+package br.ufrn.imd.sise.engine.model;
 
 public abstract class Information {
 	
