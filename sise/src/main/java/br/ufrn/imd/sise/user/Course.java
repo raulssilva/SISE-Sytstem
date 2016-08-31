@@ -1,6 +1,7 @@
 package br.ufrn.imd.sise.user;
 
 public class Course {
+	
 	private String name;
 	private String code;
 	
@@ -15,6 +16,11 @@ public class Course {
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	@Override
+	public String toString() {
+		return "Course [name=" + name + ", code=" + code + "]";
 	}
 	
 }

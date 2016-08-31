@@ -2,8 +2,6 @@ package br.ufrn.imd.sise.engine;
 
 import java.util.List;
 
-import br.ufrn.imd.sise.engine.search.EventSearchEngine;
-import br.ufrn.imd.sise.engine.search.InternshipSearchEngine;
 import br.ufrn.imd.sise.engine.search.NewsSearchEngine;
 import br.ufrn.imd.sise.engine.search.SearchEngine;
 import br.ufrn.imd.sise.model.Information;

@@ -1,5 +1,8 @@
 package br.ufrn.imd.sise.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -16,77 +19,233 @@ public class PrefferencesSearchEngine {
 //	private static final String CLIENT_SECRET = "segredo";
 //	private static final String GRANT_TYPE = "client_credentials";
 	
-	
-	private static final String ACESS_PERFIL_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/perfilusuario/361457";
+	private static final String ACESS_PERFIL_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/perfilusuario/";
 	private static final String ACESS_TOKEN = "6d2bd6a4-8196-4f20-8b5d-8916d3d2770a";
-	 
 	
-	public static void main( String[] args ) {
+	private static final String ACESS_VINCULO_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/listavinculos/usuario";
+	private static final String ACESS_DISCIPLINAS_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/matriculacomponente/discente/";//{idDiscente}/all;
+	private static final String ACESS_DISCIPLINA_USER = "https://apitestes.info.ufrn.br/ensino-services/services/consulta/turma/usuario/";
+
+	private void printTime(String titulo, long inicio){
+		long fim  = System.currentTimeMillis();  
+		System.out.println(titulo+" time: "+ (fim - inicio)/1000.0  +"seconds");
+	}
+	
+	private String getResponseString(String request){
+		//long inicio = System.currentTimeMillis();  
 		
-		//Requisição do perfil do usuário
+		
 		Client client = ClientBuilder.newClient();
-		Response response = client.target(ACESS_PERFIL_USER)
-		  .request().header("Authorization", "Bearer "+ACESS_TOKEN).method("GET");
-		//TODO tratar exceção para ACESS_TOKEN inválido
-
-		//Resposta em uma String
+		
+		Response response = client.target(request)
+				  .request().header("Authorization", "Bearer "+ ACESS_TOKEN).method("GET");
+		
 		String stringResponse = response.readEntity(String.class);
+		
 
-		//Variáveis que serão lidas do JSON
-		String nome;
-		String email;
-		int idUsuario;
-		int id;
-		String matricula;
-		String curso;
+		//printTime("...getResponseString", inicio);
+		
+		return stringResponse;
+	}
+	
+	private String colsultProfileName(int idUser){
+		long inicio = System.currentTimeMillis();
+		
+		String stringResponse = getResponseString(ACESS_PERFIL_USER+idUser);
+
+		String name = null;
 		
 		try {
-			//Cria-se um JSONparser para ler as infomrações
+
 			JSONParser parser = new JSONParser();
 			
-			//Cria-se um JSONObject de acordo com JASON retornado
 			Object obj = parser.parse(stringResponse);
+			
 			JSONObject jsonObject = (JSONObject) obj;
 
-			//Atributos lidos
-			nome = jsonObject.get("nome").toString();
-			email = jsonObject.get("email").toString();
-			
-			//é necessario entrar em um vinculo do aluno
-			//TODO Tratar erros de leitura errada, ou caso não possua o vinculo de discente 
-			JSONObject listaVinculosUsuario = (JSONObject) jsonObject.get("listaVinculosUsuario");
-			JSONArray discentes = (JSONArray) listaVinculosUsuario.get("discentes");
-			JSONObject discente =  (JSONObject) discentes.get(0);
-
-			//Leitura dos atributos correspoentes ao vinculo
-			idUsuario = Integer.parseInt(discente.get("idUsuario").toString()) ;
-			id = Integer.parseInt(discente.get("id").toString()) ;
-			matricula = discente.get("matricula").toString();
-			curso = discente.get("curso").toString();
-			
-			//PARA TESTES
-			System.out.println("Nome: "+nome);
-			System.out.println("email: "+email);
-			System.out.println("idUsuario: "+idUsuario);
-			System.out.println("id: "+id);
-			System.out.println("matricula: "+matricula);
-			System.out.println("curso: "+curso);
-			
-			Course course = new Course();
-			course.setName(curso);
-			
-			User user = new User();
-			user.setId(idUsuario);
-			user.setName(nome);
-			
-			Prefferences prefferences = new Prefferences();
-			prefferences.setCourse(course);
-		
+			name = jsonObject.get("nome").toString();
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
+		printTime("..colsultProfileName", inicio);
+		
+		return name;
+	}
+	
+	private Course colsultCourse(){
+		long inicio = System.currentTimeMillis();
+
+		String stringResponse = getResponseString(ACESS_VINCULO_USER);
+		
+		Course course = new Course();
+		
+		try {
+
+			JSONParser parser = new JSONParser();
+			
+			Object obj = parser.parse(stringResponse);
+			
+			JSONObject jsonObject = (JSONObject) obj;
+
+			JSONArray discentes = (JSONArray) jsonObject.get("discentes");
+			
+			JSONObject discente =  (JSONObject) discentes.get(0);
+
+//			int idUsuario = Integer.parseInt(discente.get("idUsuario").toString()) ;
+//			int idDiscente = Integer.parseInt(discente.get("id").toString()) ;
+//			int matricula = Integer.parseInt(discente.get("matricula").toString());
+			String curso = discente.get("curso").toString();
+			
+
+			course.setName(curso);
+			
+			printTime(".colsultCourse", inicio);
+			return course;
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private User consultUser(){
+		long inicio = System.currentTimeMillis();
+
+		String stringResponse = getResponseString(ACESS_VINCULO_USER);
+		
+		User user = new User();
+		
+		try {
+
+			JSONParser parser = new JSONParser();
+			
+			Object obj = parser.parse(stringResponse);
+			
+			JSONObject jsonObject = (JSONObject) obj;
+
+			JSONArray discentes = (JSONArray) jsonObject.get("discentes");
+			
+			JSONObject discente =  (JSONObject) discentes.get(0);
+
+			int idUsuario = Integer.parseInt(discente.get("idUsuario").toString()) ;
+			int idDiscente = Integer.parseInt(discente.get("id").toString()) ;
+			int matricula = Integer.parseInt(discente.get("matricula").toString());
+//			String curso = discente.get("curso").toString();
+			
+			user.setId(idUsuario);
+			user.setId(idDiscente);
+			user.setIdMatriculation(matricula);
+			user.setName(colsultProfileName(idUsuario));
+			
+			printTime(".consultUser", inicio);
+
+			
+			return user;
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;	
+	}
+	
+	private List<CourseClass> consultCourseClass(int idUser){
+		long inicio = System.currentTimeMillis();
+		
+		String stringResponse = getResponseString(ACESS_DISCIPLINAS_USER+idUser+"/all");
+		
+		List<CourseClass> coursesClass = new ArrayList<CourseClass>();
+		
+		try {
+
+			JSONParser parser = new JSONParser();
+			
+			Object obj = parser.parse(stringResponse);
+			
+			JSONArray turmas = (JSONArray) obj;
+
+			for(Object turma : turmas){
+				JSONObject turmaJASON = (JSONObject) turma;
+				
+				int idTurma = Integer.parseInt(turmaJASON.get("idTurma").toString()) ;
+				String description = turmaJASON.get("idTurma").toString();
+				
+				CourseClass courseClass = new CourseClass();
+				
+				courseClass.setId(idTurma);
+				courseClass.setDescription(description);
+				courseClass.setSubject(consultSubject(idTurma));
+				
+				coursesClass.add(courseClass);
+			}
+			
+			printTime(".consultCourseClass", inicio);
+			
+			return coursesClass;
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private Subject consultSubject(int courseClassId){
+		long inicio = System.currentTimeMillis();
+		
+		String stringResponse = getResponseString(ACESS_DISCIPLINA_USER+courseClassId);
+		
+		Subject susbject = new Subject();
+		
+		try {
+
+			JSONParser parser = new JSONParser();
+			
+			Object obj = parser.parse(stringResponse);
+			
+			JSONObject disciplina = (JSONObject) obj;
+
+			String nomeComponente = disciplina.get("nomeComponente").toString() ;
+			String codigoComponente = disciplina.get("codigoComponente").toString() ;
+			int idDisciplina = Integer.parseInt(disciplina.get("idDisciplina").toString()) ;
+			
+			susbject.setCode(codigoComponente);
+			susbject.setId(idDisciplina);
+			susbject.setName(nomeComponente);
+			
+			printTime("..consultSubject", inicio);
+			
+			return susbject;
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Prefferences searchPrefferences(){
+		long inicio = System.currentTimeMillis();
+		
+		Prefferences prefferences = new Prefferences();
+		
+		User user = consultUser();
+		List<CourseClass> coursesClass = consultCourseClass(user.getId());
+		Course course = colsultCourse();
+		
+		prefferences.setUser(user);
+		prefferences.setCoursesClass(coursesClass);
+		prefferences.setCourse(course);
+		
+		printTime("searchPrefferences", inicio);
+		
+		return prefferences;
+		
+	}
+	 
+	public static void main( String[] args ) {
+		PrefferencesSearchEngine pSearchEngine = new PrefferencesSearchEngine();
+		Prefferences prefferences = pSearchEngine.searchPrefferences();
+		System.out.println(prefferences.toString());
     }
 	
 //	public void authorization(){

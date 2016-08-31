@@ -1,9 +1,12 @@
 package br.ufrn.imd.sise.user;
 
+import java.util.List;
+
 public class Prefferences {
+	
 	private Department department;
 	private Course course;
-	private ClassRoom classRoom;
+	private List<CourseClass> coursesClass;
 	private User user;
 	
 	public Department getDepartment() {
@@ -21,15 +24,7 @@ public class Prefferences {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-	
-	public ClassRoom getClassRoom() {
-		return classRoom;
-	}
-	
-	public void setClassRoom(ClassRoom classRoom) {
-		this.classRoom = classRoom;
-	}
-	
+		
 	public User getUser() {
 		return user;
 	}
@@ -37,4 +32,20 @@ public class Prefferences {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<CourseClass> getCoursesClass() {
+		return coursesClass;
+	}
+
+	public void setCoursesClass(List<CourseClass> coursesClass) {
+		this.coursesClass = coursesClass;
+	}
+
+	@Override
+	public String toString() {
+		return "Prefferences [department=" + department + ", course=" + course + ", coursesClass=" + coursesClass
+				+ ", user=" + user + "]";
+	}
+	
+	
 }
