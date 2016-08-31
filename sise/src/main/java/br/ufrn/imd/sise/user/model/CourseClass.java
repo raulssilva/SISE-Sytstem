@@ -1,4 +1,4 @@
-package br.ufrn.imd.sise.user;
+package br.ufrn.imd.sise.user.model;
 
 public class CourseClass {
 	

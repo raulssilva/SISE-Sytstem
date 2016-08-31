@@ -1,10 +1,17 @@
-package br.ufrn.imd.sise.user;
+package br.ufrn.imd.sise.user.model;
 
-public class Course {
-	
+public class Subject {
+
+	private int id;
 	private String name;
 	private String code;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -20,7 +27,8 @@ public class Course {
 	
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", code=" + code + "]";
+		return "Subject [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
+	
 	
 }

@@ -1,4 +1,4 @@
-package br.ufrn.imd.sise.user;
+package br.ufrn.imd.sise.user.search;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class PrefferencesSearchEngine {
+import br.ufrn.imd.sise.user.model.Course;
+import br.ufrn.imd.sise.user.model.CourseClass;
+import br.ufrn.imd.sise.user.model.Prefferences;
+import br.ufrn.imd.sise.user.model.Subject;
+import br.ufrn.imd.sise.user.model.User;
+
+public class PrefferencesSearch {
 	
 //	private static final String CLIENT_TARGET = "https://apitestes.info.ufrn.br/authz-server/oauth/token";
 //	private static final String CLIENT_ID = "sesi-id";
@@ -243,7 +249,7 @@ public class PrefferencesSearchEngine {
 	}
 	 
 	public static void main( String[] args ) {
-		PrefferencesSearchEngine pSearchEngine = new PrefferencesSearchEngine();
+		PrefferencesSearch pSearchEngine = new PrefferencesSearch();
 		Prefferences prefferences = pSearchEngine.searchPrefferences();
 		System.out.println(prefferences.toString());
     }
