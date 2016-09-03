@@ -26,5 +26,4 @@ public class Department {
 		return "Department [name=" + name + ", code=" + code + "]";
 	}
 	
-	
 }

@@ -9,8 +9,6 @@ public class Prefferences {
 	private List<CourseClass> coursesClass;
 	private User user;
 	
-	
-	
 	public Prefferences() {
 		super();
 	}
@@ -59,6 +57,5 @@ public class Prefferences {
 		return "Prefferences [department=" + department + ", course=" + course + ", coursesClass=" + coursesClass
 				+ ", user=" + user + "]";
 	}
-	
 	
 }

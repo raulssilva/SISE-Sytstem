@@ -40,5 +40,4 @@ public class Subject {
 		return "Subject [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 	
-	
 }

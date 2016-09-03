@@ -8,7 +8,6 @@ public class News extends Information{
 	@Override
 	public void informationDescription() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public String getOriginURL() {
@@ -27,6 +26,4 @@ public class News extends Information{
 		this.time = time;
 	}
 	
-	
-
 }

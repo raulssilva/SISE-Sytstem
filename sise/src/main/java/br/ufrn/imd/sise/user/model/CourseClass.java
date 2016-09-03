@@ -40,5 +40,4 @@ public class CourseClass {
 		return "CourseClass [id=" + id + ", subject=" + subject + ", description=" + description + "]";
 	}
 
-	
 }

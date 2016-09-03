@@ -8,7 +8,6 @@ import br.ufrn.imd.sise.oauth.exceptions.InvalidServiceRequestException;
 import br.ufrn.imd.sise.oauth.exceptions.RequestException;
 import br.ufrn.imd.sise.oauth.exceptions.UnauthorizedServiceRequestException;
 
-
 public class RequestAuthorization {
 	
 	//TODO TOKEN TEMPORÁRIO PARA TESTES (REMOVER DEPOIS)
@@ -43,7 +42,7 @@ public class RequestAuthorization {
 			String stringResponse = response.readEntity(String.class);
 			
 			return stringResponse;
-		
+
 	}
 
 	public String getAcessToken() {
@@ -118,8 +117,6 @@ public class RequestAuthorization {
 //	String stringResponse2 = response2.readEntity(String.class);
 //	System.out.println("body:" + stringResponse2);
 //	System.out.println("--------------------------------------");
-	
-	
 //}
 
 }

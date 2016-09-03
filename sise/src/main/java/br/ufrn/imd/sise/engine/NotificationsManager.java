@@ -43,7 +43,6 @@ public class NotificationsManager {
 		//TODO (REMOVER DEPOIS)
 		maneger.printDemonstration(news);
 		
-		
 	}
 	
 	void printDemonstration(List<Information> informations){

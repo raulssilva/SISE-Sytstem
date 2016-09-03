@@ -6,7 +6,15 @@ public class User {
 	private int idUser;
 	private int idStudent;
 	private int idMatriculation;
-	
+
+	public User(String name, int idUser, int idStudent, int idMatriculation) {
+		super();
+		this.name = name;
+		this.idUser = idUser;
+		this.idStudent = idStudent;
+		this.idMatriculation = idMatriculation;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -44,6 +52,5 @@ public class User {
 		return "User [name=" + name + ", idUser=" + idUser + ", idStudent=" + idStudent + ", idMatriculation="
 				+ idMatriculation + "]";
 	}
-	
 	
 }

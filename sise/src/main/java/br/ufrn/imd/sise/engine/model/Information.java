@@ -63,4 +63,5 @@ public abstract class Information {
 			return false;
 		return true;
 	}
+	
 }
