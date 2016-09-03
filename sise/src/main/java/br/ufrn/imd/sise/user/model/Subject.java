@@ -6,6 +6,16 @@ public class Subject {
 	private String name;
 	private String code;
 	
+	public Subject() {
+		super();
+	}
+	
+	public Subject(int id, String name, String code) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.code = code;
+	}
 	public int getId() {
 		return id;
 	}

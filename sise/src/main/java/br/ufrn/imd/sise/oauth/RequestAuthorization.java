@@ -4,25 +4,54 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
+import br.ufrn.imd.sise.oauth.exceptions.InvalidServiceRequestException;
+import br.ufrn.imd.sise.oauth.exceptions.RequestException;
+import br.ufrn.imd.sise.oauth.exceptions.UnauthorizedServiceRequestException;
+
+
 public class RequestAuthorization {
 	
+	//TODO TOKEN TEMPORÁRIO PARA TESTES (REMOVER DEPOIS)
 	private static final String ACESS_TOKEN = "6d2bd6a4-8196-4f20-8b5d-8916d3d2770a";
 	
-	public String getResponse(String request){
-		try{
+	private String acess_token;
+	
+	public RequestAuthorization(){
+		this.acess_token = ACESS_TOKEN;
+	}
+	
+	public RequestAuthorization(String acess_token){
+		this.acess_token = acess_token;
+	}
+	
+	public String getResponse(String request) throws InvalidServiceRequestException, UnauthorizedServiceRequestException, RequestException{
+
 			Client client = ClientBuilder.newClient();
 			
 			Response response = client.target(request)
-					  .request().header("Authorization", "Bearer "+ ACESS_TOKEN).method("GET");
-			
+					  .request().header("Authorization", "Bearer "+ acess_token).method("GET");
+
+			System.out.println(request +" "+response.getStatusInfo());
+			if(response.getStatusInfo().equals(Response.Status.NOT_FOUND)){
+				throw new InvalidServiceRequestException(response);
+			}else if(response.getStatusInfo().equals(Response.Status.UNAUTHORIZED)){
+				throw new UnauthorizedServiceRequestException(response);
+			}else if(! response.getStatusInfo().equals(Response.Status.OK)){
+				throw new RequestException(response);
+			}
+
 			String stringResponse = response.readEntity(String.class);
 			
 			return stringResponse;
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
+		
+	}
 
-		return null;
+	public String getAcessToken() {
+		return acess_token;
+	}
+
+	public void setAcessToken(String acess_token) {
+		this.acess_token = acess_token;
 	}
 	
 //	private static final String CLIENT_TARGET = "https://apitestes.info.ufrn.br/authz-server/oauth/token";

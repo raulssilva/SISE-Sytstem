@@ -9,6 +9,19 @@ public class Prefferences {
 	private List<CourseClass> coursesClass;
 	private User user;
 	
+	
+	
+	public Prefferences() {
+		super();
+	}
+
+	public Prefferences(Course course, List<CourseClass> coursesClass, User user) {
+		super();
+		this.course = course;
+		this.coursesClass = coursesClass;
+		this.user = user;
+	}
+
 	public Department getDepartment() {
 		return department;
 	}

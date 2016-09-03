@@ -6,6 +6,17 @@ public class CourseClass {
 	private Subject subject;
 	private String description;
 	
+	public CourseClass() {
+		super();
+	}
+	
+	public CourseClass(int id, Subject subject, String description) {
+		super();
+		this.id = id;
+		this.subject = subject;
+		this.description = description;
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import br.ufrn.imd.sise.oauth.exceptions.InvalidServiceRequestException;
+import br.ufrn.imd.sise.oauth.exceptions.RequestException;
+import br.ufrn.imd.sise.oauth.exceptions.UnauthorizedServiceRequestException;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
@@ -17,7 +20,13 @@ public class RequestAuthorizationTest {
 	@Parameters(method = "getRequestsParams")
 	public void getResponseTest(String request){
 		RequestAuthorization auth = new RequestAuthorization();
-		String stringResponse = auth.getResponse(request);
+		String stringResponse = null;
+		try {
+			stringResponse = auth.getResponse(request);
+		} catch (InvalidServiceRequestException | UnauthorizedServiceRequestException | RequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertNotNull(stringResponse, "Response for request is valid");
 		//TODO tratar exeções
 //		{
