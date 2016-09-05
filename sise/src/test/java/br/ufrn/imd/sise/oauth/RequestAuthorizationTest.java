@@ -17,17 +17,17 @@ public class RequestAuthorizationTest {
 
 	
 	@Test
-	@Parameters(method = "getRequestsParams")
-	public void getResponseTest(String request){
+	@Parameters(method = "getRequestsParamP")
+	public void getResponsePositiveTest(String request){
 		RequestAuthorization auth = new RequestAuthorization();
 		String stringResponse = null;
 		try {
 			stringResponse = auth.getResponse(request);
 		} catch (InvalidServiceRequestException | UnauthorizedServiceRequestException | RequestException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
-		assertNotNull(stringResponse, "Response for request is valid");
+		assertNotNull("Response for request is valid", stringResponse);
 		//TODO tratar exeções
 //		{
 //			"docentes":[],
@@ -55,14 +55,30 @@ public class RequestAuthorizationTest {
 
 	}
 	
+	@Test
+	@Parameters(method = "getRequestsParamN")
+	public void getResponseNegativeTest(String request){
+		RequestAuthorization auth = new RequestAuthorization();
+		String stringResponse = null;
+		try {
+			stringResponse = auth.getResponse(request);
+		} catch (InvalidServiceRequestException | UnauthorizedServiceRequestException | RequestException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		assertNull("Response for request is invalid", stringResponse);
+	}
 	
 	
-	
-	public Object[] getRequestsParams() {
+	public Object[] getRequestsParamP() {
 		return new Object[] {
-				new Object[]{"https://apitestes.info.ufrn.br/ensino-services/services/consulta/perfilusuario/"},
-				new Object[]{"https://apitestes.info.ufrn.br/ensino-services/services/consulta/perfilusuario/"}
+				new Object[]{"https://apitestes.info.ufrn.br/ensino-services/services/consulta/listavinculos/usuario"}
 		};
 	}
 
+	public Object[] getRequestsParamN() {
+		return new Object[] {
+				new Object[]{"https://apitestes.info.ufrn.br/ensino-services/services/consulta/listavinculos/usuar"}
+		};
+	}
 }
