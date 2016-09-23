@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import br.ufrn.imd.sise.engine.filter.Filter;
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.engine.search.NewsSearchEngine;
 import br.ufrn.imd.sise.engine.search.SearchEngine;
@@ -42,6 +43,11 @@ public class NotificationsManager {
 		//TESTE EXIBIR 
 		//TODO (REMOVER DEPOIS)
 		maneger.printDemonstration(news);
+		
+		System.out.println();
+		
+		Filter filter = new Filter();
+		filter.filtrar(news, prefferences);
 		
 	}
 	
