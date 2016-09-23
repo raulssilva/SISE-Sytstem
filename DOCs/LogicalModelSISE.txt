@@ -1,0 +1,6 @@
+Usuario (MATRICULA, nome, curso);
+Noticia (TITULO, conteudo, dataPublicacao);
+PreferenciasUsuario (MATRICULA, TERMO, repeticoes)
+	matricula referencia Usuario
+PreferenciasNoticia (TITULO, TERMO, repeticoes)
+	titulo referencia Noticia 
