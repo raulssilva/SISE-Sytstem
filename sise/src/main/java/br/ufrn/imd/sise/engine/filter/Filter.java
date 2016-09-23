@@ -1,7 +1,9 @@
 package br.ufrn.imd.sise.engine.filter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.user.model.Prefferences;
@@ -12,8 +14,21 @@ public class Filter {
 	
 	public List<Information> filtrar(List<Information> listInformation, Prefferences prefferences){
 		List<Information> filtredList = null;
-		getListTerms(listInformation);
+		getSetTerms(getListTerms(listInformation));
 		return filtredList;
+	}
+	
+	private Set<String> getSetTerms(List<String> listTerms){
+		Set<String> setTerms = new HashSet<String>();
+		for (String term : listTerms) {
+			setTerms.add(term.toLowerCase());
+		}
+		
+		for (String term : setTerms) {
+			System.out.println(term);
+		}
+		
+		return setTerms;
 	}
 	
 	private List<String> getListTerms(List<Information> listInformation){
@@ -28,15 +43,15 @@ public class Filter {
 				}
 				
 				if(content.charAt(i) == ' '){
-					listTerms.add(term);
+					listTerms.add(term.trim());
 					term = "";
 				}
 			}
 		}
 		
-		for (String term : listTerms) {
-			System.out.println(term);
-		}
+//		for (String term : listTerms) {
+//			System.out.println(term);
+//		}
 		
 		return listTerms;
 	}
