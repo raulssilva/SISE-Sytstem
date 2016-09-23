@@ -64,7 +64,8 @@ public class NewsSearchEngine implements SearchEngine{
     	for (int i = 0; i < links.size(); i++) {
     		News news = new News();
     		news.setTitle(titles.get(i));
-    		news.setContent(contents.get(i));
+    		news.setContent(ClearContent.clear(contents.get(i)));
+    		//news.setContent(contents.get(i));
     		news.setOriginURL(links.get(i));
     		news.setDate(dates.get(i));
     		news.setTime(times.get(i));
