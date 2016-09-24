@@ -9,22 +9,12 @@ public class Filter{
 
 	public List<Information> filtrar(List<Information> listInformation, Prefferences prefferences){
 		
-//		SyntaticFilter syntaticFilter;
-		
-		//SemanticFilter semanticFilter;
-		
-//		Cleaner cleaner = Cleaner.getInstance();//Limpa se precisar
-		
 		Analyzer analyzer = Analyzer.getInstance();//Faz as analises 
 
 		List<Information> filtredList = analyzer.analyze(listInformation, prefferences, GoogleModelAssociation.getInstance());//analisa a lista de informações com a perferencias do usuairo
 		
 		return filtredList;
-		
-		
-		//List<Information> filtredList = null;
-//		getSetTerms(getListTerms(listInformation));
-//		return filtredList;
+	
 	}
 	
 //	private Set<String> getSetTerms(List<String> listTerms){
@@ -63,36 +53,6 @@ public class Filter{
 ////		}
 //		
 //		return listTerms;
-//	}
-//
-//	
-//	public List<String> stractTerms(Information information) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<String> filter(List<String> terms) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<Information> ranker(List<Information> informations) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public double comparator(String preferenceTerm, String informationTerm) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public double comparatorBoolean(String preferenceTerm, String informationTerm) {
-//		// TODO Auto-generated method stub
-//		return 0;
 //	}
 
 	
