@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.engine.model.News;
 
-public class NewsSearchEngine implements SearchEngine{
+public class NewsParserHTMLSearchEngine implements SearchEngine{
 
 	public List<Information> buscar() {
 		long start = System.currentTimeMillis();
@@ -64,7 +64,7 @@ public class NewsSearchEngine implements SearchEngine{
     	for (int i = 0; i < links.size(); i++) {
     		News news = new News();
     		news.setTitle(titles.get(i));
-    		news.setContent(ClearContent.clear(contents.get(i)));
+    		news.setContent(extractDataFromHTML(contents.get(i)));
     		//news.setContent(contents.get(i));
     		news.setOriginURL(links.get(i));
     		news.setDate(dates.get(i));
@@ -88,6 +88,28 @@ public class NewsSearchEngine implements SearchEngine{
 //			System.out.println("--------------------<br/>");
 //		}
 		return listNews;
+	}
+	
+	
+	private String extractDataFromHTML(String content){
+		String contentCleared = "";
+		int flag = 0;
+		for(int i = 0; i < content.length(); i++){
+			if(content.charAt(i) == '<'){
+				flag = 1;
+			}
+			
+			if(flag == 0){
+				if(content.charAt(i) != '\n'){
+					contentCleared += content.charAt(i);					
+				}
+			}
+			
+			if(content.charAt(i) == '>'){
+				flag = 0;
+			}
+		}
+		return contentCleared.trim();
 	}
 
 }

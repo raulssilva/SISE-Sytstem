@@ -1,22 +1,22 @@
-package br.ufrn.imd.sise.engine.filter;
+package br.ufrn.imd.sise.engine.filter.model;
 
-public class UserPreferences {
+public class NewsPreferences {
 	
 	private String termo;
 	private int repeticoes;
-	private String matUsuario; //REFERENCES Usuario(matricula) 
+	private String tituloNoticia; //(tituloNoticia) REFERENCES Noticia(titulo) 
 	
 	
-	public UserPreferences(){
+	public NewsPreferences(){
 		this.termo = "";
 		this.repeticoes = 0;
-		this.matUsuario = "";
+		this.tituloNoticia = "";
 	}
 	
-	public UserPreferences(String n_termo, String n_matUsuario){
+	public NewsPreferences(String n_termo, String n_tituloNoticia){
 		this.termo = n_termo;
 		this.repeticoes = 1;
-		this.matUsuario = n_matUsuario;
+		this.tituloNoticia = n_tituloNoticia;
 	}
 	
 	public void setTermo(String n_termo){
@@ -27,8 +27,8 @@ public class UserPreferences {
 		this.repeticoes = n_repeticoes;
 	}
 	
-	public void setMatUsuario(String n_matUsuario){
-		this.matUsuario = n_matUsuario;
+	public void setTituloNoticia(String n_tituloNoticia){
+		this.tituloNoticia = n_tituloNoticia;
 	}
 	
 	public String getTermo(){
@@ -39,8 +39,8 @@ public class UserPreferences {
 		return this.repeticoes;
 	}
 	
-	public String getMatUsuario(){
-		return this.matUsuario;
+	public String getTituloNoticia(){
+		return this.tituloNoticia;
 	}
 	
 	public void addQuantidade() {

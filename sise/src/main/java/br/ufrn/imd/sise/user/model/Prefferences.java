@@ -1,6 +1,9 @@
 package br.ufrn.imd.sise.user.model;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Prefferences {
 	
@@ -57,5 +60,18 @@ public class Prefferences {
 		return "Prefferences [department=" + department + ", course=" + course + ", coursesClass=" + coursesClass
 				+ ", user=" + user + "]";
 	}
+
+//	public  Set<String> getTermsSet() {
+//		System.out.println("-----------");
+//		Set<String> terms = new HashSet<>();
+//		for (CourseClass course : coursesClass) {
+//			String nameDisciplina = course.getSubject().getName();
+//			terms.add(nameDisciplina);
+//			System.out.println(nameDisciplina);
+//		}
+//		System.out.println("-----------");
+//		return terms;
+//		
+//	}
 	
 }

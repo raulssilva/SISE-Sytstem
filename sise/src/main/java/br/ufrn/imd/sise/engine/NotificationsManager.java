@@ -6,7 +6,7 @@ import org.json.simple.parser.ParseException;
 
 import br.ufrn.imd.sise.engine.filter.Filter;
 import br.ufrn.imd.sise.engine.model.Information;
-import br.ufrn.imd.sise.engine.search.NewsSearchEngine;
+import br.ufrn.imd.sise.engine.search.NewsParserHTMLSearchEngine;
 import br.ufrn.imd.sise.engine.search.SearchEngine;
 import br.ufrn.imd.sise.oauth.RequestAuthorization;
 import br.ufrn.imd.sise.oauth.exceptions.RequestException;
@@ -35,7 +35,7 @@ public class NotificationsManager {
 		System.out.println(prefferences.toString());
 
 		//Cria um motor de busca, usando uma estraégia para buscar notícias
-		SearchEngine sn = new NewsSearchEngine();
+		SearchEngine sn = new NewsParserHTMLSearchEngine();
 
 		//Busca as noticas já no formato de informações
 		List<Information> news = sn.buscar();
