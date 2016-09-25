@@ -111,5 +111,4 @@ public class NewsParserHTMLSearchEngine implements SearchEngine{
 		}
 		return contentCleared.trim();
 	}
-
 }

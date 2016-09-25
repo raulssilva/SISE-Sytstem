@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import br.ufrn.imd.sise.engine.filter.Analyzer;
 import br.ufrn.imd.sise.engine.filter.Filter;
+import br.ufrn.imd.sise.engine.filter.GoogleModelAssociation;
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.engine.search.NewsParserHTMLSearchEngine;
 import br.ufrn.imd.sise.engine.search.SearchEngine;
@@ -43,12 +45,16 @@ public class NotificationsManager {
 		//TESTE EXIBIR 
 		//TODO (REMOVER DEPOIS)
 		maneger.printDemonstration(news);
-		
+
+		//TODO (REMOVER DEPOIS)
 		System.out.println();
 		
-		Filter filter = new Filter();
-		filter.filtrar(news, prefferences);
+//		Filter filter = new Filter();
+//		filter.filtrar(news, prefferences);
 		
+		Analyzer analyzer = Analyzer.getInstance();
+
+		List<Information> analyzedList = analyzer.analyze(news, prefferences, GoogleModelAssociation.getInstance());//analisa a lista de informações com a perferencias do usuairo
 	}
 	
 	void printDemonstration(List<Information> informations){

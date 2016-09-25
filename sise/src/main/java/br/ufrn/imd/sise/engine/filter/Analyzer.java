@@ -29,6 +29,7 @@ public class Analyzer{
 		
 		List<ComparativeInformation> comparativeInformationList = new ArrayList<ComparativeInformation>();
 		
+		//TODO Rever essa parte
 		PreferencesTerms preferencesTerms = new PreferencesTerms(prefferences);
 		
 		for (Information information : informations) {
@@ -50,7 +51,13 @@ public class Analyzer{
 		
 		ComparativeInformation compInformation = new ComparativeInformation(information);
 		
-		Set<String> termsSetInformation = extractTermsSetFromInformation(information);
+		Filter filter = new Filter();
+		
+		Set<String> termsSetInformation = filter.sintaticFilter(information.getContent());
+		for(String term : termsSetInformation){
+			System.out.println(term);
+		}
+		//Set<String> termsSetInformation = extractTermsSetFromInformation(information);
 		
 		for (UserPreferences termPreferences : preferencesTerms.getUserPreferences()) {
 			for (String termsInformation : termsSetInformation) {
@@ -62,26 +69,6 @@ public class Analyzer{
 		
 		return compInformation;
 	}
-	
-
-	//TODO PONTO FRÁGIL
-	private Set<String> extractTermsSetFromInformation(Information information) {
-		Set<String> setTerms = new HashSet<String>();
-		String content = information.getContent();
-		String term = "";
-		for(int i = 0; i < content.length(); i++){
-			if(!((content.charAt(i) <= 47 && content.charAt(i) >= 33) || (content.charAt(i) <= 64 && content.charAt(i) >= 58) || (content.charAt(i) <= 93 && content.charAt(i) >= 91) || (content.charAt(i) == 95) || (content.charAt(i) <= 125 && content.charAt(i) >= 123) || (content.charAt(i) == '\n'))){
-				term += content.charAt(i);
-			}
-			
-			if(content.charAt(i) == ' '){
-				setTerms.add(term.trim());
-				term = "";
-			}
-		}
-		return setTerms;
-	}
-
 
 	private List<Information> sortInformations(List<ComparativeInformation> comparativeInformationList) {
 		// TODO FAZER Ordenação
