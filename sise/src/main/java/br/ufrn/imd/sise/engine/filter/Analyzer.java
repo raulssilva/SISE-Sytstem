@@ -62,6 +62,7 @@ public class Analyzer{
 				double weight = modelAssociation.calculate(termPreferences, termsInformation);
 				ComparativeTerm compTerm = new ComparativeTerm(termPreferences, termsInformation, weight);
 				compInformation.add(compTerm);
+				System.out.println("1.");
 			}
 		}
 		
@@ -81,6 +82,7 @@ public class Analyzer{
 				if(comparativeInformationList.get(j).getWeight() > value) {
 					value = comparativeInformationList.get(j).getWeight();
 					index = j;
+					System.out.println("2.");
 				}
 			}
 			
@@ -96,6 +98,7 @@ public class Analyzer{
 		List<Information> listInformation = new ArrayList<Information>(); 
 		for (ComparativeInformation element : comparativeInformationList) {
 			listInformation.add(element.getInformation());
+			System.out.println("3.");
 		}
 		
 		return listInformation;
