@@ -5,32 +5,45 @@ import java.util.List;
 
 public class Filter {
 	
-	private String blackListChar;
-	private List<String> blackListTerms;
+	private String trashListChar;
+	private List<String> trashListTerms;
 	
 	public Filter(){
-		blackListChar = "! @#$%&*()_-+=,.:{}[]|" + "\"" + "\\" + "\'";
-		blackListTerms = new ArrayList<String>();
+		trashListChar = "! @#$%&*()_-+=,.:{}[]|" + "\"" + "\\" + "\'";
+		trashListTerms = new ArrayList<String>();
 	}
 	
-	public Filter(String blackListChar, List<String> blackListTerms){
-		this.blackListChar = blackListChar;
-		this.blackListTerms = blackListTerms;
+	public Filter(String trashListChar, List<String> trashListTerms){
+		this.trashListChar = trashListChar;
+		this.trashListTerms = trashListTerms;
 	}
 	
-	public String getBlackListChar() {
-		return blackListChar;
+	public String getTrashListChar() {
+		return trashListChar;
 	}
 
-	public void setBlackListChar(String blackListChar) {
-		this.blackListChar = blackListChar;
+	public void setTrashListChar(String trashListChar) {
+		this.trashListChar = trashListChar;
 	}
 
-	public List<String> getBlackListTerms() {
-		return blackListTerms;
+	public List<String> getTrashListTerms() {
+		return trashListTerms;
 	}
 
-	public void setBlackListTerms(List<String> blackListTerms) {
-		this.blackListTerms = blackListTerms;
+	public void setTrashListTerms(List<String> trashListTerms) {
+		this.trashListTerms = trashListTerms;
 	}
+	
+	public void addTrashChar(String trashChar) {
+		this.trashListChar += trashChar;
+	}
+	
+	public void addTrashChar(char trashChar) {
+		this.trashListChar += trashChar;
+	}
+	
+	public void addTrashListTerm(String term) {
+		this.trashListTerms.add(term);
+	}
+
 }
