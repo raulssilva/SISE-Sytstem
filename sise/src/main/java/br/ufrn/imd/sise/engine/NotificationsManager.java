@@ -5,7 +5,7 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 
 import br.ufrn.imd.sise.engine.filter.Analyzer;
-import br.ufrn.imd.sise.engine.filter.Filter;
+import br.ufrn.imd.sise.engine.filter.Extractor;
 import br.ufrn.imd.sise.engine.filter.GoogleModelAssociation;
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.engine.search.NewsParserHTMLSearchEngine;
