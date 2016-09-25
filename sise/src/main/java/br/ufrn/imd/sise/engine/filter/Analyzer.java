@@ -51,9 +51,10 @@ public class Analyzer{
 		
 		ComparativeInformation compInformation = new ComparativeInformation(information);
 		
-		Extractor filter = new Extractor();
+		Extractor extractor = new Extractor();
+		Filter filter = new Filter();
 		
-		Set<String> termsSetInformation = filter.sintaticFilter(information.getContent());
+		Set<String> termsSetInformation = extractor.extract(information.getContent(), filter, true);
 		
 		for (UserPreferences termPreferences : preferencesTerms.getUserPreferences()) {
 			for (String termsInformation : termsSetInformation) {

@@ -14,19 +14,33 @@ public class Extractor{
 	}
 	
 	//TODO Refatorar para extração, filtragem e formatação
-	public Set<String> sintaticFilter(String content){
+	public Set<String> extract(String content, Filter filter, boolean lowerCase){
+				
 		Set<String> setTerms = new HashSet<String>();
 		String term = "";
 		for(int i = 0; i < content.length(); i++){
-			if(!((content.charAt(i) <= 47 && content.charAt(i) >= 33) || (content.charAt(i) <= 64 && content.charAt(i) >= 58) || (content.charAt(i) <= 93 && content.charAt(i) >= 91) || (content.charAt(i) == 95) || (content.charAt(i) <= 125 && content.charAt(i) >= 123) || (content.charAt(i) == '\n'))){
+			if(!filter.getTrashListChar().contains(String.valueOf(content.charAt(i)))){
 				term += content.charAt(i);
 			}
 			
 			if(content.charAt(i) == ' '){
-				setTerms.add(term.trim().toLowerCase());
+				if(lowerCase) {
+					term = term.trim().toLowerCase();	
+				} else {
+					term = term.trim();
+				}
+				
+				if(!filter.getTrashListTerms().contains(term)) {
+					setTerms.add(term);
+				} else {
+					System.out.println("[LOG] - Trash word: "+term.toUpperCase());
+				}
+				
 				term = "";
+			
 			}
 		}
+		
 		return setTerms;
 	}
 	
