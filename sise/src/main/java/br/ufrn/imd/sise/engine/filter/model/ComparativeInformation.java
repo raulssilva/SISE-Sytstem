@@ -17,6 +17,7 @@ public class ComparativeInformation {
 		this.information = information;
 		this.comparativeTerms = new ArrayList<ComparativeTerm>();
 	}
+	
 
 //	public Set<String> getTermsSet() {
 //		Set<String> setTerms = new HashSet<String>();

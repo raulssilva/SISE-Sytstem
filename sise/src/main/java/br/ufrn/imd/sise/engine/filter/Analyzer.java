@@ -41,9 +41,10 @@ public class Analyzer{
 			comparativeInformationList.add(comparativeInformation);
 		}
 		
-		List<Information> rankInformationList = sortInformations(comparativeInformationList);
+		List<ComparativeInformation> rankInformationList = sortInformations(comparativeInformationList);
+		List<Information> listInformation = toListInformation(rankInformationList);
 		
-		return rankInformationList;
+		return listInformation;
 	}
 	
 	
@@ -67,13 +68,39 @@ public class Analyzer{
 		return compInformation;
 	}
 
-	private List<Information> sortInformations(List<ComparativeInformation> comparativeInformationList) {
-		// TODO FAZER Ordenação
-//		List<Information> informations = new ArrayList<Information>();
-//		for (ComparativeInformation comparativeInformation : comparativeInformationList) {
-//			informations.add(comparativeInformation.getInformation());
-//		}
-		return null;
+	//TODO Otimizar.
+	private List<ComparativeInformation> sortInformations(List<ComparativeInformation> comparativeInformationList) {
+		
+		List<ComparativeInformation> listInformation = new ArrayList<ComparativeInformation>();
+		double value;
+		int index;
+		for(int i=0; i < comparativeInformationList.size();i++){
+			value = 0;
+			index = 0;
+			for(int j=i; j < comparativeInformationList.size();j++){
+				if(comparativeInformationList.get(j).getWeight() > value) {
+					value = comparativeInformationList.get(j).getWeight();
+					index = j;
+				}
+			}
+			
+			listInformation.add(comparativeInformationList.get(index));
+		} 
+				
+		return listInformation;
+	}
+	
+	//TODO Verificar possibilidade de colocar no pacote utils.
+	private List<Information> toListInformation(List<ComparativeInformation> comparativeInformationList) {
+		
+		List<Information> listInformation = new ArrayList<Information>(); 
+		for (ComparativeInformation element : comparativeInformationList) {
+			listInformation.add(element.getInformation());
+		}
+		
+		return listInformation;
+		
 	}
 	
 }
+
