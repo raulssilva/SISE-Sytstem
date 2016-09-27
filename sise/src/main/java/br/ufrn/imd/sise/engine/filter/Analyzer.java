@@ -73,24 +73,23 @@ public class Analyzer{
 	private List<ComparativeInformation> sortInformations(List<ComparativeInformation> comparativeInformationList) {
 		
 		List<ComparativeInformation> listInformation = new ArrayList<ComparativeInformation>();
-		double value;
-		int index;
-		for(int i=0; i < comparativeInformationList.size();i++){
-			value = 0;
-			index = 0;
-			for(int j=i; j < comparativeInformationList.size();j++){
-				if(comparativeInformationList.get(j).getWeight() > value) {
-					value = comparativeInformationList.get(j).getWeight();
-					index = j;
-					System.out.println("2.");
+		int size = comparativeInformationList.size();
+		int index = 0;
+		for(int i=0; i < size;i++){
+			for(int j=i; j < size;j++){
+				if(comparativeInformationList.get(j).getWeight() > comparativeInformationList.get(i).getWeight()) {
+					if(listInformation.size() > 0 && !listInformation.contains(comparativeInformationList.get(j)))
+						index = j;
 				}
 			}
-			
+					
 			listInformation.add(comparativeInformationList.get(index));
+			index = i;
 		} 
 				
 		return listInformation;
 	}
+	
 	
 	//TODO Verificar possibilidade de colocar no pacote utils.
 	private List<Information> toListInformation(List<ComparativeInformation> comparativeInformationList) {
