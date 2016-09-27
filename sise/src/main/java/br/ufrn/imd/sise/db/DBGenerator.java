@@ -32,7 +32,7 @@ public class DBGenerator {
 			stmt = connection.createStatement();
 			
 			//ADD A criação de tabelas aqui pra não precisar ler de arquiv
-			String sql = "CREATE TABLE Usuario("
+			String sql = "CREATE TABLE IF NOT EXISTS USER("
 								+ "ID_USER INT NOT NULL PRIMARY KEY,"
 								+ "NAME VARCHAR(60) NOT NULL,"
 								+ "ID_STUDENT INT NOT NULL"
