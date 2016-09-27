@@ -6,9 +6,11 @@ public class User {
 	private int idUser;
 	private int idStudent;
 	private int idMatriculation;
+	
+	public User() {
+	}
 
 	public User(String name, int idUser, int idStudent, int idMatriculation) {
-		super();
 		this.name = name;
 		this.idUser = idUser;
 		this.idStudent = idStudent;

@@ -1,7 +1,7 @@
 package br.ufrn.imd.sise.user.model;
 
 public class Course {
-	
+	private int id;
 	private String name;
 	private String code;
 	
@@ -20,7 +20,13 @@ public class Course {
 	
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", code=" + code + "]";
+		return "Course [id=" + id + ", name=" + name + ", code=" + code + "]";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

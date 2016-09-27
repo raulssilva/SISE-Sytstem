@@ -57,7 +57,7 @@ public class UserDAO {
     }
     
     public User readUser(int ID_USER){
-    	User user = new User(sql, 0, 0, 0);
+    	User user = new User();
     	
         sql = "SELECT * FROM USER WHERE ID_USER = " + ID_USER;
        

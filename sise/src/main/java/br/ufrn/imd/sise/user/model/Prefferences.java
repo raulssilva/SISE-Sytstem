@@ -7,10 +7,13 @@ import java.util.Set;
 
 public class Prefferences {
 	
-	private Department department;
+	private int id;
+	private User user;
 	private Course course;
 	private List<CourseClass> coursesClass;
-	private User user;
+	private Department department;
+	
+
 	
 	public Prefferences() {
 		super();
@@ -61,17 +64,12 @@ public class Prefferences {
 				+ ", user=" + user + "]";
 	}
 
-//	public  Set<String> getTermsSet() {
-//		System.out.println("-----------");
-//		Set<String> terms = new HashSet<>();
-//		for (CourseClass course : coursesClass) {
-//			String nameDisciplina = course.getSubject().getName();
-//			terms.add(nameDisciplina);
-//			System.out.println(nameDisciplina);
-//		}
-//		System.out.println("-----------");
-//		return terms;
-//		
-//	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 }

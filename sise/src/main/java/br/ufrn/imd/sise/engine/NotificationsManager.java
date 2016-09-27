@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import br.ufrn.imd.sise.dao.PrefferencesDAO;
+import br.ufrn.imd.sise.db.DBGenerator;
 import br.ufrn.imd.sise.engine.filter.Analyzer;
-import br.ufrn.imd.sise.engine.filter.Extractor;
 import br.ufrn.imd.sise.engine.filter.GoogleModelAssociation;
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.engine.search.NewsParserHTMLSearchEngine;
@@ -23,6 +24,9 @@ public class NotificationsManager {
 		
 		NotificationsManager maneger = new NotificationsManager();
 		
+		DBGenerator dbGenerator = new DBGenerator();
+		dbGenerator.generateDataBase();
+		
 		//Cria autorização (Por enquanto o ToKEN está estático)
 		//TODO Fazer parte de autenticação dinâmica
 		RequestAuthorization authorization = new RequestAuthorization();
@@ -32,6 +36,10 @@ public class NotificationsManager {
 		
 		//Busca as preferencias usando o mecanismo criado anteirormente
 		Prefferences prefferences = pSearchEngine.searchPrefferences();
+		
+		//Salva Preferências no Banco de dados
+		PrefferencesDAO prefferencesDAO = new PrefferencesDAO();
+		prefferencesDAO.createPrefferences(prefferences);
 		
 		//TESTE EXIBIR
 		System.out.println(prefferences.toString());
