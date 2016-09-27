@@ -41,6 +41,7 @@ public class Extractor{
 			}
 		}
 		
+		setTerms.add(term);
 		//TODO retirar o print
 		for(String s : setTerms){
 			System.out.println(s);
