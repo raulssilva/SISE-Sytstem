@@ -9,7 +9,7 @@ public class Filter {
 	private List<String> trashListTerms;
 	
 	public Filter(){
-		trashListChar = "! @#$%&*()_-+=,.:{}[]|" + "\"" + "\\" + "\'";
+		trashListChar = "! @#$%&*()_-+=,.:;{}[]|/0123456789" + "\"" + "\\" + "\'";
 		trashListTerms = new ArrayList<String>();
 	}
 	
