@@ -26,7 +26,7 @@ public class Analyzer{
 
 
 	public List<Information> analyze(List<Information> informations, Prefferences prefferences, ModelAssociation modelAssociation) {
-		
+		System.out.println("analyze(Size Informations: "+informations.size()+", Prefferences"+prefferences.getUser().getName() +", "+modelAssociation.getClass().getCanonicalName()+")");
 		List<ComparativeInformation> comparativeInformationList = new ArrayList<ComparativeInformation>();
 		
 		//TODO Rever essa parte
@@ -41,14 +41,25 @@ public class Analyzer{
 			comparativeInformationList.add(comparativeInformation);
 		}
 		
+		//TODO REITIRAR
+		for (ComparativeInformation information : comparativeInformationList) {System.out.println(information.getInformation().getTitle() +", "+ information.getWeight());}System.out.println("----------------------");
+		
 		List<ComparativeInformation> rankInformationList = sortInformations(comparativeInformationList);
+		
+		//TODO REITIRAR
+		for (ComparativeInformation information : rankInformationList) {System.out.println(information.getInformation().getTitle() +", "+ information.getWeight());}System.out.println("----------------------");
+		
 		List<Information> listInformation = toListInformation(rankInformationList);
+		
+		//TODO REITIRAR
+		for (Information information : listInformation) {System.out.println(information.getTitle() +", "+ information.getContent().length());}
 		
 		return listInformation;
 	}
 	
 	
 	private ComparativeInformation association(Information information, PreferencesTerms preferencesTerms, ModelAssociation modelAssociation) {
+		System.out.println("association(Size Information: "+information.getContent().length()+", preferencesTerms"+preferencesTerms.getUserPreferences().size()+", "+modelAssociation.getClass().getCanonicalName()+")");
 		
 		ComparativeInformation compInformation = new ComparativeInformation(information);
 		
@@ -62,9 +73,14 @@ public class Analyzer{
 				double weight = modelAssociation.calculate(termPreferences, termsInformation);
 				ComparativeTerm compTerm = new ComparativeTerm(termPreferences, termsInformation, weight);
 				compInformation.add(compTerm);
-				System.out.println("1.");
+
+				//TODO (TEMPORARIO) RETIRAR, ISSO NÃO DEVERIA ESTAR AQUI...
+				compInformation.setWeight(compInformation.getWeight()+weight);
 			}
 		}
+		
+		//TODO REITRAR
+		System.out.println("	compInformation = " +compInformation.toString());
 		
 		return compInformation;
 	}
@@ -84,13 +100,11 @@ public class Analyzer{
 			}
 					
 			listInformation.add(comparativeInformationList.get(index));
-			index = i;    
+			index = i;
 		} 
 				
 		return listInformation;
-	
 	}
-	
 	
 	//TODO Verificar possibilidade de colocar no pacote utils.
 	private List<Information> toListInformation(List<ComparativeInformation> comparativeInformationList) {
@@ -98,7 +112,6 @@ public class Analyzer{
 		List<Information> listInformation = new ArrayList<Information>(); 
 		for (ComparativeInformation element : comparativeInformationList) {
 			listInformation.add(element.getInformation());
-			System.out.println("3.");
 		}
 		
 		return listInformation;
