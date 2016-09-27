@@ -84,10 +84,11 @@ public class Analyzer{
 			}
 					
 			listInformation.add(comparativeInformationList.get(index));
-			index = i;
+			index = i;    
 		} 
 				
 		return listInformation;
+	
 	}
 	
 	
