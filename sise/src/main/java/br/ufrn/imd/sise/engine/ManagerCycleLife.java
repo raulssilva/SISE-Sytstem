@@ -18,13 +18,13 @@ import br.ufrn.imd.sise.user.model.User;
 import br.ufrn.imd.sise.user.search.PrefferencesSearch;
 import br.ufrn.imd.sise.user.search.exceptions.ServiceAPIException;
 
-public class ManegerCycleLife implements Observer {
+public class ManagerCycleLife implements Observer {
 	
 	private String acess_token;
 	private int iduserCycleLife;
 	private Prefferences prefferences;
 	
-	public ManegerCycleLife(String acess_token, int iduserCycleLife){
+	public ManagerCycleLife(String acess_token, int iduserCycleLife){
 		this.acess_token = acess_token;
 		this.iduserCycleLife = iduserCycleLife;
 		setup();
