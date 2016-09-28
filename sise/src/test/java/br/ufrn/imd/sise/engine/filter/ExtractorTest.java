@@ -9,10 +9,7 @@ import java.util.Set;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import br.ufrn.imd.sise.oauth.RequestAuthorization;
-import br.ufrn.imd.sise.oauth.exceptions.InvalidServiceRequestException;
-import br.ufrn.imd.sise.oauth.exceptions.RequestException;
-import br.ufrn.imd.sise.oauth.exceptions.UnauthorizedServiceRequestException;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 

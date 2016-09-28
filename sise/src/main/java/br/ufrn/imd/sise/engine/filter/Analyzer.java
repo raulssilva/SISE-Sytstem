@@ -1,7 +1,6 @@
 package br.ufrn.imd.sise.engine.filter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,17 +12,6 @@ import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.user.model.Prefferences;
 
 public class Analyzer{
-	
-	private static Analyzer analyze = new Analyzer();
-	
-	private Analyzer() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public static Analyzer getInstance(){
-		return analyze;
-	}
-
 
 	public List<Information> analyze(List<Information> informations, Prefferences prefferences, ModelAssociation modelAssociation) {
 //		System.out.println("analyze(Size Informations: "+informations.size()+", Prefferences"+prefferences.getUser().getName() +", "+modelAssociation.getClass().getCanonicalName()+")");

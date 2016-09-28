@@ -1,11 +1,7 @@
 package br.ufrn.imd.sise.engine.filter;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import br.ufrn.imd.sise.engine.model.Information;
-import br.ufrn.imd.sise.user.model.Prefferences;
 
 public class Extractor{
 	
