@@ -30,7 +30,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>br.ufrn.imd.sise.engine.NotificationsManager</mainClass>
+              <mainClass>br.ufrn.imd.sise.engine.Manager</mainClass>
             </manifest>
           </archive>
       </configuration>
