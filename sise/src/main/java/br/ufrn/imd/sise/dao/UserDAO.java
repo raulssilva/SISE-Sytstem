@@ -40,9 +40,8 @@ public class UserDAO {
             PreparedStatement query = connection.prepareStatement(sql);
             query.setInt(1, user.getId());
             query.setString(2, user.getName());
-            query.setInt(3, user.getIdMatriculation());
-            query.setInt(4, user.getIdStudent());
-            query.setInt(5, user.getIdMatriculation());
+            query.setInt(3, user.getIdStudent());
+            query.setInt(4, user.getIdMatriculation());
  
             query.execute();
             query.close();

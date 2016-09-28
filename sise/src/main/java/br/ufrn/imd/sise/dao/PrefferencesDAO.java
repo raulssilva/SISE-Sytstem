@@ -33,15 +33,21 @@ public class PrefferencesDAO {
 	public boolean createPrefferences(Prefferences prefferences){
 
         sql = "INSERT INTO PREFFERENCES VALUES (?, ?, ?, ?)";
- 
+        
+        UserDAO userDAO = new UserDAO();
+        CourseDAO courseDAO = new CourseDAO();
+        DepartmentDAO departmentDAO = new DepartmentDAO();
         try {
  
             PreparedStatement query = connection.prepareStatement(sql);
             query.setInt(1, prefferences.getId());
             query.setInt(2, prefferences.getUser().getId());
+            userDAO.createUser(prefferences.getUser());
             query.setInt(3, prefferences.getCourse().getId());
+            courseDAO.createCourse( prefferences.getCourse());
             insertPrefferencesCoursesClass(prefferences);
             query.setInt(4, 0);//TODO AJEITAR DEPARTAMENTO
+//            departmentDAO.createDepartament();
  
             query.execute();
             query.close();
@@ -110,10 +116,10 @@ public class PrefferencesDAO {
     private boolean insertPrefferencesCoursesClass(Prefferences prefferences){
     	List<CourseClass> coursesClass = prefferences.getCoursesClass();
     	
-    	sql = "INSERT INTO PREFFERENCES_COURSE_CLASS VALUES (?, ?)";
+    	sql = "INSERT INTO PREFFERENCES_COURSE_CLASS (ID_PREFFERENCES, ID_COURSE_CLASS) VALUES (?, ?)";
     	
     	CourseClassDAO courseClassDAO = new CourseClassDAO(); 
-    	
+    	SubjectDAO subjectDAO = new SubjectDAO(); 
     	try {
 	    	
     		for (CourseClass courseClass : coursesClass) {
@@ -125,6 +131,8 @@ public class PrefferencesDAO {
 	            query.close();
 	            
 	            courseClassDAO.createCourseClass(courseClass);
+	            subjectDAO.createSubject(courseClass.getSubject());
+
 			}
         
         } catch (SQLException e) {
@@ -136,8 +144,9 @@ public class PrefferencesDAO {
     
     private List<CourseClass> readPrefferencesCoursesClass(Prefferences prefferences){ 	
     	
-    	sql = "SELECT * PREFFERENCES_COURSE_CLASS WHERE ID_PREFFERENCES = "+ prefferences.getId();
+    	sql = "SELECT * FROM PREFFERENCES_COURSE_CLASS WHERE ID_PREFFERENCES = "+ prefferences.getId();
 
+    	System.out.println(sql);
     	try {
 
     		List<CourseClass> coursesClass = new ArrayList<CourseClass>();

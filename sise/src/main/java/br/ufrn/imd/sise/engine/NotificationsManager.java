@@ -24,22 +24,25 @@ public class NotificationsManager {
 		
 		NotificationsManager maneger = new NotificationsManager();
 		
-		DBGenerator dbGenerator = new DBGenerator();
-		dbGenerator.generateDataBase();
-		
-		//Cria autorização (Por enquanto o ToKEN está estático)
-		//TODO Fazer parte de autenticação dinâmica
-		RequestAuthorization authorization = new RequestAuthorization();
-		
-		//Cria o mecanismo de busca de preferencia do cliente passando a autorização correspondente
-		PrefferencesSearch pSearchEngine = new PrefferencesSearch(authorization);
-		
-		//Busca as preferencias usando o mecanismo criado anteirormente
-		Prefferences prefferences = pSearchEngine.searchPrefferences();
-		
-		//Salva Preferências no Banco de dados
+//		DBGenerator dbGenerator = new DBGenerator();
+//		dbGenerator.generateDataBase();
+//		
+//		//Cria autorização (Por enquanto o ToKEN está estático)
+//		//TODO Fazer parte de autenticação dinâmica
+//		RequestAuthorization authorization = new RequestAuthorization();
+//		
+//		//Cria o mecanismo de busca de preferencia do cliente passando a autorização correspondente
+//		PrefferencesSearch pSearchEngine = new PrefferencesSearch(authorization);
+//		
+//		//Busca as preferencias usando o mecanismo criado anteirormente
+//		Prefferences prefferences = pSearchEngine.searchPrefferences();
+//		
+//		//Salva Preferências no Banco de dados
 		PrefferencesDAO prefferencesDAO = new PrefferencesDAO();
-		prefferencesDAO.createPrefferences(prefferences);
+//		prefferencesDAO.createPrefferences(prefferences);
+		
+		//TODO Temporário
+		Prefferences prefferences = prefferencesDAO.readPrefferences(0);
 		
 		//TESTE EXIBIR
 		System.out.println(prefferences.toString());

@@ -27,7 +27,7 @@ public class SubjectDAO {
  
     public boolean createSubject(Subject subject){
 
-        sql = "INSERT INTO SUBJECT VALUES (?, ?, ?)";
+        sql = "INSERT OR IGNORE INTO SUBJECT VALUES (?, ?, ?)";
  
         try {
  
