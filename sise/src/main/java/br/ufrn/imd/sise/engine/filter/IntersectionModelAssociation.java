@@ -29,6 +29,8 @@ public class IntersectionModelAssociation implements ModelAssociation{
 			for(int i=0; i<size;i++) {
 				if(userTerm.charAt(i) == termsInformation.charAt(i)) {
 					value += 1;
+				} else {
+					return value;
 				}
 			}
 			
