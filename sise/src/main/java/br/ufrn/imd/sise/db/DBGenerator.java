@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 /**
  * @Fonte https://www.tutorialspoint.com/sqlite/sqlite_java.htm
- * @Editado_por Felipe
+ * @Editado
  */
 public class DBGenerator {
 
@@ -27,13 +27,12 @@ public class DBGenerator {
 		
 		Statement stmt = null;
 		try {
-			System.out.println("Opened database successfully");
+			System.out.println("[CHECK_DB] Opened database successfully");
 
 			stmt = connection.createStatement();
 			
 			//ADD A criação de tabelas aqui pra não precisar ler de arquiv
 
-            
 			String sqlUSER = "CREATE TABLE IF NOT EXISTS USER("
 								+ "ID_USER INT NOT NULL PRIMARY KEY,"
 								+ "NAME VARCHAR(60) NOT NULL,"
@@ -80,12 +79,12 @@ public class DBGenerator {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			connection.close();
-			
+			System.out.println("[CHECK_DB] database verified");
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
-		System.out.println("Table created successfully");
+		
 	}
 
 }

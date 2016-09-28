@@ -36,7 +36,7 @@ public class PrefferencesDAO {
         
         UserDAO userDAO = new UserDAO();
         CourseDAO courseDAO = new CourseDAO();
-        DepartmentDAO departmentDAO = new DepartmentDAO();
+//        DepartmentDAO departmentDAO = new DepartmentDAO();
         try {
  
             PreparedStatement query = connection.prepareStatement(sql);
@@ -59,6 +59,31 @@ public class PrefferencesDAO {
         }
         
 		return false;
+    }
+	
+	public Prefferences readPrefferencesByIdUser(int ID_USER){
+    	Prefferences prefferences = new Prefferences();
+    	
+        sql = "SELECT * FROM PREFFERENCES WHERE ID_USER = " + ID_USER;
+        try {
+            query = connection.createStatement();
+            ResultSet rs = query.executeQuery(sql);
+ 
+            UserDAO userDAO = new UserDAO();
+            CourseDAO courseDAO = new CourseDAO();
+            while (rs.next()) {
+
+                prefferences.setId(rs.getInt("ID_PREFFERENCES"));
+                prefferences.setUser(userDAO.readUser(rs.getInt("ID_USER")));
+                prefferences.setCourse(courseDAO.readCourse(rs.getInt("ID_COURSE")));
+                prefferences.setCoursesClass(readPrefferencesCoursesClass(prefferences));
+                prefferences.setDepartment(null);//TODO AJEITAR DEPARTAMENTO
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+		return prefferences;
     }
     
     public Prefferences readPrefferences(int ID_PREFFERENCES){
@@ -146,7 +171,6 @@ public class PrefferencesDAO {
     	
     	sql = "SELECT * FROM PREFFERENCES_COURSE_CLASS WHERE ID_PREFFERENCES = "+ prefferences.getId();
 
-    	System.out.println(sql);
     	try {
 
     		List<CourseClass> coursesClass = new ArrayList<CourseClass>();

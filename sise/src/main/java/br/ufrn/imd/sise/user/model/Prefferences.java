@@ -1,9 +1,6 @@
 package br.ufrn.imd.sise.user.model;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Prefferences {
 	
@@ -12,8 +9,6 @@ public class Prefferences {
 	private Course course;
 	private List<CourseClass> coursesClass;
 	private Department department;
-	
-
 	
 	public Prefferences() {
 		super();

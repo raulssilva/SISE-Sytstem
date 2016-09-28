@@ -71,11 +71,12 @@ public class UserDAO {
                 user.setIdStudent(rs.getInt("ID_STUDENT"));
                 user.setIdMatriculation(rs.getInt("ID_MATRICULATION"));
             }
+            return user;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-		return user;
+		return null;
     }
     
     public void updateUser(int ID_USER, User user){

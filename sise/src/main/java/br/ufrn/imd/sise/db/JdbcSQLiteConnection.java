@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 /**
  * @Fonte http://www.codejava.net/java-se/jdbc/connect-to-sqlite-via-jdbc
- * @Editado_por Felipe
+ * @Editado
  */
 public class JdbcSQLiteConnection {
 	
@@ -18,22 +18,19 @@ public class JdbcSQLiteConnection {
 	
 	private JdbcSQLiteConnection(){
 		this.connection = null;
-		
+
 	}
 	
 	public static JdbcSQLiteConnection getInstance(){
+//		jdbcSQLiteConnection.printLOG();
 		return jdbcSQLiteConnection;
 	}
 	
 	public Connection getConnection() throws SQLException{
-		//try {
 			String dbURL = DB_URL;
 			connection = DriverManager.getConnection(dbURL);
-			printLOG();
-		//} catch (SQLException e) {
-			//e.printStackTrace(); //TODO LANÇAR A EXEÇÃO QUE NÃO SE CONECTOU AO BANCO
-		//}
-		
+			//printLOG();
+
 		return connection;
 	}
  
@@ -44,10 +41,10 @@ public class JdbcSQLiteConnection {
             	System.out.println("------------------------------");
                 System.out.println("[DB] Connected to the database");
                 DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
-                System.out.println("[DB] Driver name: " + dm.getDriverName());
-                System.out.println("[DB] Driver version: " + dm.getDriverVersion());
-                System.out.println("[DB] Product name: " + dm.getDatabaseProductName());
-                System.out.println("[DB] Product version: " + dm.getDatabaseProductVersion());
+//                System.out.println("[DB] Driver name: " + dm.getDriverName());
+//                System.out.println("[DB] Driver version: " + dm.getDriverVersion());
+//                System.out.println("[DB] Product name: " + dm.getDatabaseProductName());
+//                System.out.println("[DB] Product version: " + dm.getDatabaseProductVersion());
                 System.out.println("------------------------------");
             }
         } catch (SQLException ex) {

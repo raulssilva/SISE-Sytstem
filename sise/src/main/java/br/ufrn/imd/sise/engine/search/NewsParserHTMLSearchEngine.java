@@ -12,12 +12,20 @@ import org.jsoup.select.Elements;
 import br.ufrn.imd.sise.engine.model.Information;
 import br.ufrn.imd.sise.engine.model.News;
 
-public class NewsParserHTMLSearchEngine implements SearchEngine{
+public class NewsParserHTMLSearchEngine extends SearchEngine{
+	
+	@Override
+	public void start() {
+		List<Information> news = buscar();
+		notifyAll(news);
+	}
+
 
 	public List<Information> buscar() {
 		long start = System.currentTimeMillis();
 
     	String noticia = "https://sistemas.ufrn.br/portal/PT/noticia#";
+    	System.out.println("[SEARCHING_NEWS] https://sistemas.ufrn.br/portal/PT/noticia#");
     	
 		List<String> links = new ArrayList<String>();
     	List<String> dates = new ArrayList<String>();
@@ -57,36 +65,20 @@ public class NewsParserHTMLSearchEngine implements SearchEngine{
     	}
     	
     	long elapsed = System.currentTimeMillis() - start;
-    	System.out.println(elapsed/1000.0 + "Segundos");
-    	
+    	System.out.println();
+    	System.out.println("[SEARCHING_NEWS] time " + elapsed/1000.0 + " segundos");
     	ArrayList<Information> listNews = new ArrayList<Information>(); 
     	
     	for (int i = 0; i < links.size(); i++) {
     		News news = new News();
     		news.setTitle(titles.get(i));
     		news.setContent(extractDataFromHTML(contents.get(i)));
-    		//news.setContent(contents.get(i));
     		news.setOriginURL(links.get(i));
     		news.setDate(dates.get(i));
     		news.setTime(times.get(i));
 			listNews.add(news);
 		}
 
-//    	System.out.println("links"+links.size());
-//    	System.out.println("dates"+dates.size());
-//    	System.out.println("times"+times.size());
-//    	System.out.println("titles"+titles.size());
-//    	System.out.println("contents"+contents.size());
-//
-//    	for (int i = 0; i < links.size(); i++) {
-//    		System.out.println("--------------------<br/>");
-//    		System.out.println(titles.get(i));
-//			System.out.println(contents.get(i));
-//			System.out.println(links.get(i));
-//			System.out.println(dates.get(i));
-//			System.out.println(times.get(i));
-//			System.out.println("--------------------<br/>");
-//		}
 		return listNews;
 	}
 	
@@ -111,4 +103,6 @@ public class NewsParserHTMLSearchEngine implements SearchEngine{
 		}
 		return contentCleared.trim();
 	}
+
+	
 }

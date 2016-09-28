@@ -26,11 +26,15 @@ public class Analyzer{
 
 
 	public List<Information> analyze(List<Information> informations, Prefferences prefferences, ModelAssociation modelAssociation) {
-		System.out.println("analyze(Size Informations: "+informations.size()+", Prefferences"+prefferences.getUser().getName() +", "+modelAssociation.getClass().getCanonicalName()+")");
+//		System.out.println("analyze(Size Informations: "+informations.size()+", Prefferences"+prefferences.getUser().getName() +", "+modelAssociation.getClass().getCanonicalName()+")");
 		List<ComparativeInformation> comparativeInformationList = new ArrayList<ComparativeInformation>();
 		
 		//TODO Rever essa parte
 		PreferencesTerms preferencesTerms = new PreferencesTerms(prefferences);
+		
+		System.out.println("----------------------");
+		System.out.println("[ANALYSER] Comparing term by term from informations");
+		System.out.println("----------------------");
 		
 		for (Information information : informations) {
 			
@@ -40,26 +44,29 @@ public class Analyzer{
 			//Adiciona na lista
 			comparativeInformationList.add(comparativeInformation);
 		}
+		System.out.println("\n ----------------------");
 		
 		//TODO REITIRAR
-		for (ComparativeInformation information : comparativeInformationList) {System.out.println(information.getInformation().getTitle() +", "+ information.getWeight());}System.out.println("----------------------");
+		for (ComparativeInformation information : comparativeInformationList) {System.out.println("[NOT_ORDER] "+information.getInformation().getTitle() +", "+ information.getWeight());}
+		System.out.println("----------------------");
 		
 		List<ComparativeInformation> rankInformationList = sortInformations(comparativeInformationList);
 		
 		//TODO REITIRAR
-		for (ComparativeInformation information : rankInformationList) {System.out.println(information.getInformation().getTitle() +", "+ information.getWeight());}System.out.println("----------------------");
+		for (ComparativeInformation information : rankInformationList) {System.out.println("[ORDER] "+information.getInformation().getTitle() +", "+ information.getWeight());}
+		System.out.println("----------------------");
 		
 		List<Information> listInformation = toListInformation(rankInformationList);
 		
 		//TODO REITIRAR
-		for (Information information : listInformation) {System.out.println(information.getTitle() +", "+ information.getContent().length());}
+//		for (Information information : listInformation) {System.out.println(information.getTitle() +", "+ information.getContent().length());}
 		
 		return listInformation;
 	}
 	
 	
 	private ComparativeInformation association(Information information, PreferencesTerms preferencesTerms, ModelAssociation modelAssociation) {
-		System.out.println("association(Size Information: "+information.getContent().length()+", preferencesTerms"+preferencesTerms.getUserPreferences().size()+", "+modelAssociation.getClass().getCanonicalName()+")");
+//		System.out.println("association(Size Information: "+information.getContent().length()+", preferencesTerms"+preferencesTerms.getUserPreferences().size()+", "+modelAssociation.getClass().getCanonicalName()+")");
 		
 		ComparativeInformation compInformation = new ComparativeInformation(information);
 		
@@ -67,6 +74,7 @@ public class Analyzer{
 		Filter filter = new Filter();
 		
 		Set<String> termsSetInformation = extractor.extract(information.getContent(), filter, true);
+		
 		
 		for (UserPreferences termPreferences : preferencesTerms.getUserPreferences()) {
 			for (String termsInformation : termsSetInformation) {
@@ -80,7 +88,7 @@ public class Analyzer{
 		}
 		
 		//TODO REITRAR
-		System.out.println("	compInformation = " +compInformation.toString());
+//		System.out.println("	compInformation = " +compInformation.toString());
 		
 		return compInformation;
 	}
@@ -91,8 +99,7 @@ public class Analyzer{
 		int size = comparativeInformationList.size();
 		int index = 0, test;
 		ComparativeInformation information = comparativeInformationList.get(index);
-		System.out.println("________________ORDENAÇÃO________________________________");
-		
+		System.out.println("[ANALYSER] Ordering informations");
 		for(int i=0; i < size;i++){
 			information = comparativeInformationList.get(i);
 			index = i;
@@ -109,10 +116,10 @@ public class Analyzer{
 			test = 0;
 			
 			//listInformation.add(comparativeInformationList.get(index));
-			System.out.println(comparativeInformationList.get(i).getInformation().getTitle()+", "+comparativeInformationList.get(i).getWeight());
+//			System.out.println(comparativeInformationList.get(i).getInformation().getTitle()+", "+comparativeInformationList.get(i).getWeight());
 		} 
 		
-		System.out.println("_________________________________________________________");
+		System.out.println("[SORT] ");
 		
 		return comparativeInformationList;
 	}

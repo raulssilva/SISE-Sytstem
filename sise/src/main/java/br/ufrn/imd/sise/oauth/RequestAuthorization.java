@@ -11,7 +11,7 @@ import br.ufrn.imd.sise.oauth.exceptions.UnauthorizedServiceRequestException;
 public class RequestAuthorization {
 	
 	//TODO TOKEN TEMPORÁRIO PARA TESTES (REMOVER DEPOIS)
-	private static final String ACESS_TOKEN = "6d2bd6a4-8196-4f20-8b5d-8916d3d2770a";
+	private String ACESS_TOKEN = "6d2bd6a4-8196-4f20-8b5d-8916d3d2770a";
 	
 	private String acess_token;
 	
