@@ -18,7 +18,7 @@ public class IntersectionModelAssociation implements ModelAssociation{
 		if(userTerm.equals(termsInformation)) {
 			return 10.0;
 		} else {
-			double value = 0;
+			double value = 0, intersec = 0;
 			int size = 0;	
 			if(userTerm.length() > termsInformation.length()) {
 				size = userTerm.length(); 
@@ -28,8 +28,9 @@ public class IntersectionModelAssociation implements ModelAssociation{
 			
 			for(int i=0; i<size;i++) {
 				if(userTerm.charAt(i) == termsInformation.charAt(i)) {
-					value += 1;
+					intersec += 1;
 				} else {
+					value = ((intersec/userTerm.length()) * 10);
 					return value;
 				}
 			}
