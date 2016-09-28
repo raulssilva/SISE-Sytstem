@@ -88,22 +88,33 @@ public class Analyzer{
 	//TODO Otimizar.
 	private List<ComparativeInformation> sortInformations(List<ComparativeInformation> comparativeInformationList) {
 		
-		List<ComparativeInformation> listInformation = new ArrayList<ComparativeInformation>();
 		int size = comparativeInformationList.size();
-		int index = 0;
+		int index = 0, test;
+		ComparativeInformation information = comparativeInformationList.get(index);
+		System.out.println("________________ORDENAÇÃO________________________________");
+		
 		for(int i=0; i < size;i++){
+			information = comparativeInformationList.get(i);
+			index = i;
 			for(int j=i; j < size;j++){
-				if(comparativeInformationList.get(j).getWeight() > comparativeInformationList.get(i).getWeight()) {
-					if(listInformation.size() > 0 && !listInformation.contains(comparativeInformationList.get(j)))
-						index = j;
+				test = Double.compare(comparativeInformationList.get(j).getWeight() , information.getWeight());
+				if(test == 1) {
+					index = j;
+					information = comparativeInformationList.get(j);
 				}
 			}
-					
-			listInformation.add(comparativeInformationList.get(index));
-			index = i;
+			
+			comparativeInformationList.set(index, comparativeInformationList.get(i));
+			comparativeInformationList.set(i, information);
+			test = 0;
+			
+			//listInformation.add(comparativeInformationList.get(index));
+			System.out.println(comparativeInformationList.get(i).getInformation().getTitle()+", "+comparativeInformationList.get(i).getWeight());
 		} 
-				
-		return listInformation;
+		
+		System.out.println("_________________________________________________________");
+		
+		return comparativeInformationList;
 	}
 	
 	//TODO Verificar possibilidade de colocar no pacote utils.
