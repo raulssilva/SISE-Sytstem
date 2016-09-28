@@ -34,8 +34,7 @@ public class ManagerCycleLife implements Observer {
 		
 		UserDAO userDAO = new UserDAO();
 		User user = userDAO.readUser(iduserCycleLife);
-		
-		if(user == null){
+		if(user == null || user.getId() == 0){
 			//Busca na API do SIGAA
 			try {
 				//Cria o mecanismo de busca de preferencia do cliente passando a autorização correspondente

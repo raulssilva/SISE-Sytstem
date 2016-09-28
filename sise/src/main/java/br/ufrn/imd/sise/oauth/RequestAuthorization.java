@@ -30,7 +30,7 @@ public class RequestAuthorization {
 					  .request().header("Authorization", "Bearer "+ acess_token).method("GET");
 
 			//TODO - Remover depois o log da API
-			System.out.println(request +" "+response.getStatusInfo());
+			System.out.println("[API_CONSULT] "+request +" "+response.getStatusInfo());
 			if(response.getStatusInfo().equals(Response.Status.NOT_FOUND)){
 				throw new InvalidServiceRequestException(response, request);
 			}else if(response.getStatusInfo().equals(Response.Status.UNAUTHORIZED)){
