@@ -5,8 +5,7 @@ public class UserPreferences {
 	private String termo;
 	private int repeticoes;
 	private String matUsuario; //REFERENCES Usuario(matricula) 
-	
-	
+
 	public UserPreferences(){
 		this.termo = "";
 		this.repeticoes = 0;

@@ -10,11 +10,6 @@ import br.ufrn.imd.sise.engine.filter.model.UserPreferences;
 
 public class GoogleModelAssociation implements ModelAssociation{
 
-	private static GoogleModelAssociation googleModelAssociation = new GoogleModelAssociation();
-	
-	private GoogleModelAssociation() {
-
-	}
 	
 	public double calculate(UserPreferences termPreferences, String termsInformation) {
 		double sp = searchResult(termPreferences.getTermo())*1.0;
@@ -22,10 +17,6 @@ public class GoogleModelAssociation implements ModelAssociation{
 		double spst = searchResult("\""+termsInformation + "\" \"" + termPreferences.getTermo()+"\"")*1.0;
 		double value = (spst/sp)+(spst/st);
 		return value;
-	}
-
-	public static GoogleModelAssociation getInstance() {
-		return googleModelAssociation;
 	}
 	
 	//TODO DESCOMENTAR E RETORNAR O VALOR CORRETO

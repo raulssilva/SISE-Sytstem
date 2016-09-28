@@ -1,7 +1,6 @@
 package br.ufrn.imd.sise.db;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
  
@@ -35,21 +34,21 @@ public class JdbcSQLiteConnection {
 	}
  
 	
-    private void printLOG() {
-    	try {
-            if (connection != null) {
-            	System.out.println("------------------------------");
-                System.out.println("[DB] Connected to the database");
-                DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
-//                System.out.println("[DB] Driver name: " + dm.getDriverName());
-//                System.out.println("[DB] Driver version: " + dm.getDriverVersion());
-//                System.out.println("[DB] Product name: " + dm.getDatabaseProductName());
-//                System.out.println("[DB] Product version: " + dm.getDatabaseProductVersion());
-                System.out.println("------------------------------");
-            }
-        } catch (SQLException ex) {
-            //ex.printStackTrace();
-        } 
-	}
+//    private void printLOG() {
+//    	try {
+//            if (connection != null) {
+//            	System.out.println("------------------------------");
+//                System.out.println("[DB] Connected to the database");
+//                DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
+////                System.out.println("[DB] Driver name: " + dm.getDriverName());
+////                System.out.println("[DB] Driver version: " + dm.getDriverVersion());
+////                System.out.println("[DB] Product name: " + dm.getDatabaseProductName());
+////                System.out.println("[DB] Product version: " + dm.getDatabaseProductVersion());
+//                System.out.println("------------------------------");
+//            }
+//        } catch (SQLException ex) {
+//            //ex.printStackTrace();
+//        } 
+//	}
 
 }
