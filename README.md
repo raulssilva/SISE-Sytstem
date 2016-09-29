@@ -6,34 +6,34 @@ O SISE (Sistema de Integração de Serviços para Estudantes) é um sistema que 
 - [Jackson Rauup](https://github.com/jacksonrauupti)
 - [Raul Silveira](https://github.com/RaulMacintosh)
 
-### Pré-requisitos ###
+## Guia de Execução ##
+
+#### Pré-requisitos 
  	
 [Maven](http://maven.apache.org/install.html)
 
 [Java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
+#### Executando pelo maven 
 
-### Executando pelo maven ###
-
-1. Clona o projeto:
+Clona o projeto:
 
 ```sh
 git clone https://github.com/RaulMacintosh/SISE-Sytstem.git
 ```
 
-2. Acessa a pasta do projeto e Executa:
-
+Acessa a pasta do projeto e Executa:
 ```sh
 $ mvn package
 ```
 
-3. Após construir o *target* do projeto, executa:
+Após construir o *target* do projeto, executa:
 
 ```sh
 $ java -cp target/sise-1.0-SNAPSHOT-jar-with-dependencies.jar br.ufrn.imd.sise.engine.Manager
 ```
 
-### Executando pelo eclipse ###
+#### Executando pelo eclipse 
 
 1. Importa o projeto: 
 	
@@ -43,6 +43,6 @@ $ java -cp target/sise-1.0-SNAPSHOT-jar-with-dependencies.jar br.ufrn.imd.sise.e
 
 3. Executa a classe Manager.java;
 
-### Resultados ###
+## Resultados ##
 
 Os resultados serão exibidos em um log de execução de cada etapa do sistema.
